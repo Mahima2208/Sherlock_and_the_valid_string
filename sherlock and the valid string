@@ -1,0 +1,57 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'isValid' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def isValid(s):
+    # Write your code here
+    freq_list={}
+    result="NO"
+    for elem in s:
+        if elem in freq_list.keys():
+            freq_list[elem]=freq_list[elem]+1
+        else:
+            freq_list[elem]=1
+    freq_value_list=list(freq_list.values())
+    freq=freq_value_list[0]
+    valid_string=""
+    for key,value in freq_list.items():
+        if freq==value:
+            pass
+        else:
+            valid_string+=key
+    for valid in valid_string:
+        if len(valid_string)==1:
+            freq_list.pop(valid)
+        else:
+            freq_list[valid]=freq_list[valid]-1
+            
+        
+    for value in freq_list.values():
+        if freq==value:
+            result="YES"
+        else:
+            
+            result="NO"
+            break
+    return result
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = isValid(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
